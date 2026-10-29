@@ -54,4 +54,4 @@ class Handler(SimpleHTTPRequestHandler):
  def send_json(self,obj,status=200):
   b=json.dumps(obj,ensure_ascii=False).encode();self.send_response(status);self.send_header('Content-Type','application/json; charset=utf-8');self.send_header('Cache-Control','no-store');self.send_header('Content-Length',str(len(b)));self.end_headers();self.wfile.write(b)
 if __name__=='__main__':
- print('HorseRace Intelligence DE: http://localhost:8765');ThreadingHTTPServer(('127.0.0.1',8765),Handler).serve_forever()
+ print('HorseRace Intelligence DE: http://localhost:8765');ThreadingHTTPServer(('0.0.0.0', int(__import__('os').environ.get('PORT', 10000))),Handler).serve_forever()
